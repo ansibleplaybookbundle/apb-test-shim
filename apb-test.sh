@@ -13,6 +13,7 @@ yellow='\033[0;33m'
 neutral='\033[0m'
 
 apb_name=${apb_name:-"test-apb"}
+dockerfile=${dockerfile:-"Dockerfile"}
 cluster_role=${cluster_role:-"edit"}
 binding=${binding:-"rolebinding"}
 
@@ -157,7 +158,7 @@ function lint_apb() {
 function build_apb() {
     printf ${green}"Building apb"${neutral}"\n"
     echo -en 'travis_fold:start:build.1\\r'
-    apb build --tag $apb_name
+    apb build --tag $apb_name -f $dockerfile
     if ! git diff --exit-code
         then printf ${red}"Committed APB spec differs from built apb.yml spec"${neutral}"\n"
         exit 1
