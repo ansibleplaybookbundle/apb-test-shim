@@ -148,7 +148,7 @@ function requirements() {
     echo -en 'travis_fold:start:install_requirements\\r'
     if [ -z "$TRAVIS_PYTHON_VERSION" ]; then
         export PATH=$HOME/.local/bin:$PATH
-        pip install --pre apb yamllint --user `whoami`
+        pip install --pre apb yamllint --user
     else
         pip install --pre apb yamllint
     fi
@@ -182,7 +182,7 @@ function build_apb() {
 function lint_playbooks() {
     printf ${green}"Linting playbooks"${neutral}"\n"
     echo -en 'travis_fold:start:lint.2\\r'
-    playbooks=$(find playbooks -type f -printf "%f\n" -name '*.yml' -o -name '*.yaml')
+    playbooks=$(find playbooks -maxdepth 1 -type f -printf "%f\n" -name '*.yml' -o -name '*.yaml')
     if [ -z "$playbooks" ]; then
         printf ${red}"No playbooks"${neutral}"\n"
         exit 1
