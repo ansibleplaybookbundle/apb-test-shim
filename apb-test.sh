@@ -230,6 +230,16 @@ function create_sa() {
     printf "\n"
 }
 
+function create_resources() {
+    if [ -n "$resources" ]; then
+        if [ -n "$resources_namespace" ]; then
+            $CMD create -f $resources -n $resources_namespace
+        else
+            $CMD create -f $resources
+        fi
+    fi
+}
+
 # Run the test
 function test_apb() {
     requirements
@@ -239,6 +249,7 @@ function test_apb() {
     setup_cluster
     create_apb_namespace
     create_sa
+    create_resources
     run_apb "test"
 }
 
