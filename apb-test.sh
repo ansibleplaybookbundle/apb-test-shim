@@ -86,7 +86,7 @@ function setup_kubernetes() {
     # https://github.com/kubernetes/minikube#linux-continuous-integration-without-vm-support
     printf ${yellow}"Bringing up minikube"${neutral}"\n"
     echo -en 'travis_fold:start:minikube\\r'
-    sudo curl -Lo /usr/bin/minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+    sudo curl -Lo /usr/bin/minikube https://storage.googleapis.com/minikube/releases/v0.27.0/minikube-linux-amd64
     sudo chmod +x /usr/bin/minikube
     if [ "$KUBERNETES_VERSION" == "latest" ]; then
         sudo curl -Lo /usr/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
