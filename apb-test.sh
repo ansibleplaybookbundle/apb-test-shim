@@ -104,6 +104,10 @@ function setup_kubernetes() {
     touch $HOME/.kube/config
     export KUBECONFIG=$HOME/.kube/config
 
+    if [ "$KUBERNETES_VERSION" == "v1.9.0" ]; then
+      export AUTO_ESCALATE=true
+    fi
+
     if [ "$KUBERNETES_VERSION" == "latest" ]; then
         sudo minikube start \
             --vm-driver=none \
