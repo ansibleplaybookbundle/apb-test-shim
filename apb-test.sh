@@ -186,7 +186,7 @@ function build_apb() {
 function lint_playbooks() {
     printf ${green}"Linting playbooks"${neutral}"\n"
     echo -en 'travis_fold:start:lint.2\\r'
-    playbooks=$(find playbooks -maxdepth 1 -type f -printf "%f\n" -name '*.yml' -o -name '*.yaml')
+    playbooks=$(find playbooks/ -maxdepth 1 -type f -printf "%f\n" -name '*.yml' -o -name '*.yaml')
     if [ -z "$playbooks" ]; then
         printf ${red}"No playbooks"${neutral}"\n"
         exit 1
